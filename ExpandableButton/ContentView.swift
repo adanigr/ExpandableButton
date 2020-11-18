@@ -42,6 +42,7 @@ struct ExpandableButtonPanel: View {
             }
             
             Button( action: {
+                self.isExpanded.toggle()
                 self.primaryButton.action?()
             }, label: {
                 self.primaryButton.label
