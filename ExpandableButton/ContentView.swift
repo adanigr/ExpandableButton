@@ -36,7 +36,6 @@ struct ExpandableButtonPanel: View {
                         withAnimation {
                             self.isExpanded.toggle()
                         }
-                        
                         button.action?()
                     }, label: {
                         button.label
