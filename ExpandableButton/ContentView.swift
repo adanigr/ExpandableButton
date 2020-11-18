@@ -33,6 +33,10 @@ struct ExpandableButtonPanel: View {
             if isExpanded {
                 ForEach(secondaryButtons){ button in
                     Button(action: {
+                        withAnimation {
+                            self.isExpanded.toggle()
+                        }
+                        
                         button.action?()
                     }, label: {
                         button.label
@@ -42,7 +46,10 @@ struct ExpandableButtonPanel: View {
             }
             
             Button( action: {
-                self.isExpanded.toggle()
+                withAnimation {
+                    self.isExpanded.toggle()
+                }
+                
                 self.primaryButton.action?()
             }, label: {
                 self.primaryButton.label
@@ -63,7 +70,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                List(1...10, id: \.self) { i in
+                List(1...20, id: \.self) { i in
                     Text("Row #\(i)")
                 }
                 
@@ -74,7 +81,7 @@ struct ContentView: View {
                         ExpandableButtonPanel(
                             primaryButton: ExpandableButtonItem(label: Image(systemName: "ellipsis")),
                             secondaryButtons: [
-                                ExpandableButtonItem(label: Image(systemName: "Photo")) {
+                                ExpandableButtonItem(label: Image(systemName: "photo")) {
                                     self.showAlert.toggle()
                                 },
                                 ExpandableButtonItem(label: Image(systemName: "camera")) {
